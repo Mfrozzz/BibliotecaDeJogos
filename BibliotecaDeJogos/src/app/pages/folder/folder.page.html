@@ -3,10 +3,21 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Biblioteca de Jogos</ion-title>
+      <ion-title><ion-icon name="game-controller-outline" class="icone-header"></ion-icon>Biblioteca de Jogos</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
+
+  <ion-item class="header-home">
+    <ion-label>Bem-Vindo(a) a Biblioteca de Jogos!</ion-label>
+  </ion-item>
+  <p class="text-info"><ion-label>Aqui você pode:</ion-label></p>
+
+  <ion-item>
+    <ion-label class="alinhar"><ion-label color="success">Adicionar</ion-label><ion-label color="warning">Modificar</ion-label><ion-label color="danger">Remover</ion-label></ion-label>
+  </ion-item>
+
+  <p class="text-info"><ion-label>Os seus Jogos, como quiser.</ion-label></p>
 
 </ion-content>
