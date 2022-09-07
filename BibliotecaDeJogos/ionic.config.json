@@ -1,0 +1,7 @@
+{
+  "name": "BibliotecaDeJogos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
