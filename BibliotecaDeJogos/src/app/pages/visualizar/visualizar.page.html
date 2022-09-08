@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Visualizar Jogos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let jogo of jogos" (click)="buttonClick()">
+      <ion-icon slot="end" name="{{icone}}"></ion-icon>
+      <ion-label>{{jogo.nome}}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="(aberto)" >
+      <ion-item *ngFor="let jogo of jogos">
+        <ul>
+          <li><ion-label>Produtora: {{jogo.produtora}}</ion-label></li>
+          <li><ion-label>Plataforma: {{jogo.plataforma}}</ion-label></li>
+          <li><ion-label>Genero: {{jogo.genero}}</ion-label></li>
+          <li><ion-label>Preço: R${{jogo.preco}}</ion-label></li>
+          <li><ion-label>Avaliação: {{jogo.avaliacao}} estrelas</ion-label></li>
+          <li><ion-label>Ano de Lançamento: {{jogo.anoLancamento}}</ion-label></li>
+        </ul>
+      </ion-item>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'adicionar',
     loadChildren: () => import('./pages/adicionar/adicionar.module').then( m => m.AdicionarPageModule)
+  },
+  {
+    path: 'visualizar',
+    loadChildren: () => import('./pages/visualizar/visualizar.module').then( m => m.VisualizarPageModule)
   }
 ];
 

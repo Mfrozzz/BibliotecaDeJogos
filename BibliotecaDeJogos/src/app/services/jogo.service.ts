@@ -10,8 +10,9 @@ export class JogoService {
   
   constructor() {
     //jogo de exemplo falta ano/data
-    let game = new Jogo("Hollow Knight","Team Cherry","Pc","MetroidVania",26.60,5);
+    let game = new Jogo("Hollow Knight","Team Cherry","Pc","MetroidVania",26.60,5,2017);
     this.inserir(game);
+
   }
   
   public inserir(jogos: Jogo):void{

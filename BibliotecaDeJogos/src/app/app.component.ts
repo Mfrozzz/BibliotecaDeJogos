@@ -10,7 +10,7 @@ export class AppComponent {
     { title: 'Home', url: '/folder/folder', icon: 'home' },
     { title: 'Adicionar', url: '/adicionar', icon: 'add-circle' },
     { title: 'Editar', url: '/folder/editar', icon: 'pencil' },
-    { title: 'Visualizar', url: '/folder/visualizar', icon: 'eye' },
+    { title: 'Visualizar', url: '/visualizar', icon: 'eye' },
     { title: 'Remover', url: '/folder/remover', icon: 'trash' }
   ];
   constructor(private _route : Router) {}
