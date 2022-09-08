@@ -8,5 +8,54 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <form [formGroup]="formCadastrar" (ngSubmit)="submitForm()">
+      <ion-item>
+        <ion-input type="text" placeholder="Nome" formControlName="nome"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Produtora" formControlName="produtora"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select placeholder="Selecione a Plataforma" formControlName="plataforma">
+          <ion-select-option value="Pc">Pc</ion-select-option>
+          <ion-select-option value="Xbox">Xbox</ion-select-option>
+          <ion-select-option value="PlayStation">PlayStation</ion-select-option>
+          <ion-select-option value="Switch">Nitendo Switch</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-select placeholder="Selecione o Genero" formControlName="genero">
+          <ion-select-option value="Acao">Ação</ion-select-option>
+          <ion-select-option value="Aventura">Aventura</ion-select-option>
+          <ion-select-option value="Arcade">Arcade</ion-select-option>
+          <ion-select-option value="Casual">Casual</ion-select-option>
+          <ion-select-option value="Corrida">Corrida</ion-select-option>
+          <ion-select-option value="Estrategia">Estrategia</ion-select-option>
+          <ion-select-option value="Esportes">Esportes</ion-select-option>
+          <ion-select-option value="MetroidVania">MetroidVania</ion-select-option>
+          <ion-select-option value="Multijogador">Multijogador</ion-select-option>
+          <ion-select-option value="RPG">RPG</ion-select-option>
+          <ion-select-option value="Simulacao">Simulação</ion-select-option>
+          <ion-select-option value="Terror">Terror</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="Preço: R$" formControlName="preco"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select placeholder="Avaliação" formControlName="avaliacao">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+          <ion-select-option value="5">5</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="Ano de Lançamento" formControlName="anoLancamento"></ion-input>
+      </ion-item>
+      <ion-button expand="block" type="submit">Cadastrar</ion-button>
+    </form>
+  </ion-list>
 </ion-content>
