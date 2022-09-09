@@ -44,6 +44,15 @@ export class AdicionarPage implements OnInit {
 
   private cadastrar() : void{
       this._jogoService.inserir(this.formCadastrar.value);
+      this.formCadastrar = this._formBuilder.group({
+        nome:[""],
+        produtora:[""],
+        plataforma:[""],
+        genero:[""],
+        preco:[""],
+        avaliacao:[""],
+        anoLancamento:[""]
+      })
       this.presentAlert("Biblioteca de Jogos","Sucesso","Jogo adicionado em sua Biblioteca");
       this._router.navigate(["/visualizar"]);
   }

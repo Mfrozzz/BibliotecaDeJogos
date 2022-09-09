@@ -9,25 +9,11 @@ import { JogoService } from 'src/app/services/jogo.service';
 })
 export class VisualizarPage implements OnInit {
   jogos : Jogo[];
-  aberto: boolean = false;
-  icone: string;
 
   constructor(private _jogoService: JogoService) {
     this.jogos = this._jogoService.jogos;
-    this.icone = "arrow-down";
    }
 
   ngOnInit() {
-  }
-
-  buttonClick(){
-    if(this.aberto){
-      this.icone = "arrow-down";
-      this.aberto = false;
-    }else{
-      this.aberto = true;
-      this.icone = "arrow-up";
-    }
-
   }
 }
