@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-button (click)="onClick()">
+        <ion-icon name="caret-back-outline" class="back-icon"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>GAME<ion-icon name="cube-outline" class="icone-header"></ion-icon>BOX</ion-title>
   </ion-toolbar>
@@ -9,18 +11,18 @@
 
 <ion-content>
   <ion-toolbar>
-    <ion-title>Adicionar</ion-title>
+    <ion-title>Editar</ion-title>
   </ion-toolbar>
   <ion-list>
-    <form [formGroup]="formCadastrar" (ngSubmit)="submitForm()">
+    <form [formGroup]="editarForm" (ngSubmit)="submitForm()">
       <ion-item>
-        <ion-input type="text" placeholder="Nome" formControlName="nome"></ion-input>
+        <ion-input type="text" placeholder="nome" formControlName="nome"></ion-input>
       </ion-item>
       <ion-item *ngIf="(((errorControl.nome.touched) || (errorControl.nome.dirty))&& errorControl.nome.errors)">
         <span *ngIf="errorControl.nome.errors?.required">Nome do jogo é obrigatório!</span>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Produtora" formControlName="produtora"></ion-input>
+        <ion-input type="text" placeholder="produtora" formControlName="produtora"></ion-input>
       </ion-item>
       <ion-item *ngIf="(((errorControl.produtora.touched) || (errorControl.produtora.dirty))&& errorControl.produtora.errors)">
         <span *ngIf="errorControl.produtora.errors?.required">Produtora do jogo é obrigatório!</span>
@@ -92,7 +94,8 @@
           </div>
         </ion-accordion>
       </ion-accordion-group>
-      <ion-button expand="block" type="submit" class="btnCadastro" color="box">Cadastrar</ion-button>
+      <ion-button expand="block" type="submit" class="btnEdit" color="box">Editar</ion-button>
     </form>
   </ion-list>
+
 </ion-content>

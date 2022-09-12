@@ -1,18 +1,3 @@
-.btnAlteracao{
-    margin-top: 0.5rem;
-    font-size: auto;
-    font-weight: 600;
-    border-radius: 4px;
-    width: 100%;
-    height: 100%;
-    margin-left: 1rem;
-}
-
-.botoes{
-    display: flex;
-    align-items: center;
-}
-
 *{
     border: 0;
     padding: 0;
@@ -38,25 +23,6 @@
     height: 20px;
   }
 
-  .ion-padding{
-    margin-left: 2rem;
-  }
-
-  .nomes{
-    color: var(--ion-color-magenta);
-  }
-
-  .atributos{
+  .back-icon{
     color: var(--ion-color-box);
   }
-
-  li{
-    list-style: none;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-}
-
-ul{
-    padding: 0;
-    margin: 0; 
-}

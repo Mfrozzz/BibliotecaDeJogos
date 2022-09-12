@@ -22,6 +22,14 @@ const routes: Routes = [
   {
     path: 'editar',
     loadChildren: () => import('./pages/editar/editar.module').then( m => m.EditarPageModule)
+  },
+  {
+    path: 'excluir',
+    loadChildren: () => import('./pages/excluir/excluir.module').then( m => m.ExcluirPageModule)
+  },
+  {
+    path: 'alterar',
+    loadChildren: () => import('./pages/alterar/alterar.module').then( m => m.AlterarPageModule)
   }
 ];
 

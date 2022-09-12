@@ -3,7 +3,7 @@
     <ion-menu contentId="main-content" type="overlay" menuId="main-content">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Biblioteca</ion-list-header>
+          <ion-list-header>Menu<ion-icon name="game-controller-outline" class="icone-header"></ion-icon></ion-list-header>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="onClick(p.url)" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected" >
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>

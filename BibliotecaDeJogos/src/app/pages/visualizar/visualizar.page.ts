@@ -15,5 +15,8 @@ export class VisualizarPage implements OnInit {
    }
 
   ngOnInit() {
+    for(let i=0;i<this.jogos.length;i++){
+      this.jogos[i].anoLancamento = this.jogos[i].anoLancamento.split('-')[0];
+    }
   }
 }

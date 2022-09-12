@@ -3,29 +3,32 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Editar Jogos</ion-title>
+    <ion-title>GAME<ion-icon name="cube-outline" class="icone-header"></ion-icon>BOX</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-toolbar>
+    <ion-title>Editar/Remover</ion-title>
+  </ion-toolbar>
   <ion-list>
     <ion-accordion-group *ngFor="let jogo of jogos" >
       <ion-accordion value="first">
         <ion-item slot="header" color="light">
-          <ion-label>{{jogo.nome}}</ion-label>
+          <ion-label class="nomes">{{jogo.nome}}</ion-label>
         </ion-item>
         <div class="ion-padding" slot="content">
           <ul>
-            <li><ion-label>Produtora: {{jogo.produtora}}</ion-label></li>
-            <li><ion-label>Plataforma: {{jogo.plataforma}}</ion-label></li>
-            <li><ion-label>Genero: {{jogo.genero}}</ion-label></li>
-            <li><ion-label>Preço: R${{jogo.preco}}</ion-label></li>
-            <li><ion-label>Avaliação: {{jogo.avaliacao}} estrelas</ion-label></li>
-            <li><ion-label>Ano de Lançamento: {{jogo.anoLancamento}}</ion-label></li>
+            <li><ion-label><span class="atributos">Produtora:</span> {{jogo.produtora}}</ion-label></li>
+            <li><ion-label><span class="atributos">Plataforma:</span> {{jogo.plataforma}}</ion-label></li>
+            <li><ion-label><span class="atributos">Genero:</span> {{jogo.genero}}</ion-label></li>
+            <li><ion-label><span class="atributos">Preço:</span> R${{jogo.preco}}</ion-label></li>
+            <li><ion-label><span class="atributos">Avaliação:</span> {{jogo.avaliacao}}</ion-label></li>
+            <li><ion-label><span class="atributos">Ano de Lançamento:</span> {{jogo.anoLancamento}}</ion-label></li>
           </ul>
           <ion-item class="botoes">
-            <ion-button class="btnAlteracao" expand="block" type="submit" color="warning">Editar</ion-button>
-            <ion-button (click)="excluir()" class="btnAlteracao" expand="block" type="submit" color="danger">Remover</ion-button>
+            <ion-button (click)="alterar(jogo)" class="btnAlteracao" expand="block" type="submit" color="warning">Editar</ion-button>
+            <ion-button (click)="excluir(jogo)" class="btnAlteracao" expand="block" type="submit" color="danger">Remover</ion-button>
           </ion-item>
         </div>
       </ion-accordion>

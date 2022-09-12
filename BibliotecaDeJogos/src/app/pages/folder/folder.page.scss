@@ -4,17 +4,23 @@
 }
 
 ion-menu-button {
-  color: var(--ion-color-primary);
+  color: var(--ion-color-box);
 }
 
 ion-title{
   text-align: center;
+  color: var(--ion-color-box);
+  font-size:x-large;
+  font-weight:900;
+  background: linear-gradient(to right,var(--ion-color-box),var(--ion-color-magenta));    
+  -webkit-background-clip: text;   
+  -webkit-text-fill-color: transparent;
 }
 
-.icone-header{
-  margin-right: 0.5rem;
-  align-self: center;
-
+ion-title ion-icon{
+  color: white;
+  width: 20px;
+  height: 20px;
 }
 
 .text-info{

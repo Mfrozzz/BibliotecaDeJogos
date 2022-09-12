@@ -1,21 +1,6 @@
-li{
-    list-style: none;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-}
-
-ul{
-    padding: 0;
-    margin: 0; 
-}
-
 *{
     border: 0;
     padding: 0;
-  }
-  
-  ion-menu-button {
-    color: var(--ion-color-box);
   }
   
   ion-title{
@@ -34,14 +19,17 @@ ul{
     height: 20px;
   }
 
-  .ion-padding{
-    margin-left: 2rem;
-  }
-
-  .nomes{
-    color: var(--ion-color-magenta);
-  }
-
-  .atributos{
+  .back-icon{
     color: var(--ion-color-box);
+  }
+
+  .btnEdit{
+    margin-top: 0.5rem;
+    font-size: auto;
+    font-weight: 600;
+    border-radius: 4px;
+    width: 15rem;
+    height: 3rem;
+    margin-right: auto;
+    margin-left: auto;
   }

@@ -9,10 +9,9 @@ export class JogoService {
   private _jogos: Jogo[] = [];
   
   constructor() {
-    //jogo de exemplo falta ano/data
-    let game = new Jogo("Hollow Knight","Team Cherry","Pc","MetroidVania",26.60,5,2017);
-    this.inserir(game);
-
+    //jogo de exemplo
+    /*let game = new Jogo("Hollow Knight","Team Cherry","Pc","MetroidVania",26.60,"5 Estrelas","2017");
+    this.inserir(game);*/
   }
   
   public inserir(jogos: Jogo):void{
@@ -31,8 +30,8 @@ export class JogoService {
     }
     return false;
   }
-//nome:string,produtora: string,plataforma: string,genero: string,preco: number,avaliacao: number
-  public editar(jogo: Jogo, nome : string, produtora: string,plataforma: string,genero: string, preco: number,avaliacao: number): boolean{
+
+  public editar(jogo: Jogo, nome : string, produtora: string,plataforma: string,genero: string, preco: number,avaliacao: string,anoLancamento:string): boolean{
     for(let i=0;i<this._jogos.length;i++){
       if((this._jogos[i].id) == (jogo.id)){
         this._jogos[i].nome = nome;
@@ -40,7 +39,8 @@ export class JogoService {
         this._jogos[i].plataforma = plataforma;
         this._jogos[i].genero = genero;
         this._jogos[i].preco = preco;
-        this._jogos[i].avaliacao = avaliacao;//falta a data ou ano
+        this._jogos[i].avaliacao = avaliacao;
+        this._jogos[i].anoLancamento = anoLancamento;
         return true;
       }
     }

@@ -4,11 +4,11 @@ export class Jogo {
     private _plataforma: string;
     private _genero: string;
     private _preco: number;
-    private _avaliacao: number;
+    private _avaliacao: string;
     private _id: any;
-    private _anoLancamento: number;
+    private _anoLancamento: string;
     
-    constructor(nome:string,produtora: string,plataforma: string,genero: string,preco: number,avaliacao: number,anoLancamento: number){
+    constructor(nome:string,produtora: string,plataforma: string,genero: string,preco: number,avaliacao: string,anoLancamento: string){
         let chave = new Date;
         this._id=chave.getTime();
         this._nome = nome;
@@ -55,10 +55,10 @@ export class Jogo {
         this._preco = value;
     }
     
-    public get avaliacao(): number {
+    public get avaliacao(): string {
         return this._avaliacao;
     }
-    public set avaliacao(value: number) {
+    public set avaliacao(value: string) {
         this._avaliacao = value;
     }
 
@@ -66,10 +66,10 @@ export class Jogo {
         return this._id;
     }
     
-    public get anoLancamento(): number {
+    public get anoLancamento(): string {
         return this._anoLancamento;
     }
-    public set anoLancamento(value: number) {
+    public set anoLancamento(value: string) {
         this._anoLancamento = value;
     }
 }

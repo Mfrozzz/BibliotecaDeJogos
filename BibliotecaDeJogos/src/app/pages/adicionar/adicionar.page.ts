@@ -12,19 +12,21 @@ import { JogoService } from 'src/app/services/jogo.service';
 export class AdicionarPage implements OnInit {
   formCadastrar: FormGroup;
   is_Submitted: boolean = false;
+  ano_lancamento:string;
 
   constructor(private _router : Router, private _formBuilder:FormBuilder,private alertController: AlertController,private _jogoService: JogoService) {
   }
 
   ngOnInit() {
+    this.ano_lancamento=new Date().toISOString();
     this.formCadastrar = this._formBuilder.group({
-      nome:["",Validators.required],
-      produtora:["",Validators.required],
-      plataforma:["",Validators.required],
-      genero:["",Validators.required],
-      preco:["",Validators.required],
-      avaliacao:["",Validators.required],
-      anoLancamento:["",Validators.required]
+      nome:["",[Validators.required]],
+      produtora:["",[Validators.required]],
+      plataforma:["",[Validators.required]],
+      genero:["",[Validators.required]],
+      preco:[""],
+      avaliacao:["",[Validators.required]],
+      anoLancamento:["",[Validators.required]]
     })
   }
 
