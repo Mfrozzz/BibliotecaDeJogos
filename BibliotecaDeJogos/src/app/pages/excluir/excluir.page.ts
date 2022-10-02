@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Jogo } from 'src/app/model/jogo';
+import { JogoFBServiceService } from 'src/app/services/jogo-fbservice.service';
 import { JogoService } from 'src/app/services/jogo.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { JogoService } from 'src/app/services/jogo.service';
 export class ExcluirPage implements OnInit {
   jogo: Jogo;
 
-  constructor(private alertController: AlertController,private _router: Router, private _jogoService: JogoService) { }
+  constructor(private _loadingCtrl: LoadingController,private alertController: AlertController,private _router: Router, private _jogoService: JogoFBServiceService) { }
 
   ngOnInit() {
     const nav = this._router.getCurrentNavigation();
@@ -32,15 +33,19 @@ export class ExcluirPage implements OnInit {
   }
 
   excluir():void{
-    this.presentAlertConfirm("Biblioteca de Jogos","Excluir jogo","Você deseja excluir esse jogo?");
+    this.presentAlertConfirm("GameBox","Excluir jogo","Você deseja excluir esse jogo?");
   }
   private excluirJogo(): void{
-    if(this._jogoService.excluir(this.jogo)){
-      this.presentAlert("Biblioteca de Jogos","Sucesso","Jogo excluido");
+    this.showLoading("Excluindo.",1000);
+    this._jogoService.excluirJogo(this.jogo).then(()=>{
+      this._loadingCtrl.dismiss();
+      this.presentAlert("GameBox","Sucesso","Jogo excluido");
       this._router.navigate(["/visualizar"]);
-    }else{
-      this.presentAlert("Biblioteca de Jogos","Erro","Jogo não encontrado");
-    }
+    }).catch((error)=>{
+      this._loadingCtrl.dismiss();
+      this.presentAlert("GameBox","Erro","Jogo não encontrado");
+      console.log(error);
+    });
   }
 // no trab outro arquivo.
   async presentAlertConfirm(cabecalho : string, subcabecalho : string,msg: string) {
@@ -66,6 +71,15 @@ export class ExcluirPage implements OnInit {
 
   onClick(){
     this._router.navigate(["/editar"]);
+  }
+
+  async showLoading(mensagem:string,duracao:number) {
+    const loading = await this._loadingCtrl.create({
+      message: mensagem,
+      duration: duracao,
+    });
+
+    loading.present();
   }
 
 }

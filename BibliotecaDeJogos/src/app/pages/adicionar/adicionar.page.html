@@ -92,6 +92,11 @@
           </div>
         </ion-accordion>
       </ion-accordion-group>
+      <ion-item>
+        <ion-button color="box" size="default" class="img-input">
+          <input type="file" (change)="uploadFile($event.target)" formControlName="imagem">
+        </ion-button>
+      </ion-item>
       <ion-button expand="block" type="submit" class="btnCadastro" color="box">Cadastrar</ion-button>
     </form>
   </ion-list>

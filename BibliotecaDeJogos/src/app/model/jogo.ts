@@ -5,12 +5,11 @@ export class Jogo {
     private _genero: string;
     private _preco: number;
     private _avaliacao: string;
-    private _id: any;
+    private _id: string;
     private _anoLancamento: string;
+    private _downloadURL: any;
     
     constructor(nome:string,produtora: string,plataforma: string,genero: string,preco: number,avaliacao: string,anoLancamento: string){
-        let chave = new Date;
-        this._id=chave.getTime();
         this._nome = nome;
         this._produtora = produtora;
         this._plataforma = plataforma;
@@ -62,7 +61,7 @@ export class Jogo {
         this._avaliacao = value;
     }
 
-    public get id(): any{
+    public get id(): string{
         return this._id;
     }
     
@@ -72,4 +71,12 @@ export class Jogo {
     public set anoLancamento(value: string) {
         this._anoLancamento = value;
     }
+
+    public get downloadURL(): any {
+        return this._downloadURL;
+    }
+    public set downloadURL(value: any) {
+        this._downloadURL = value;
+    }
+
 }

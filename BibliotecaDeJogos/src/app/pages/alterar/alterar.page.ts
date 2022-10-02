@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Jogo } from 'src/app/model/jogo';
+import { JogoFBServiceService } from 'src/app/services/jogo-fbservice.service';
 import { JogoService } from 'src/app/services/jogo.service';
 
 @Component({
@@ -15,8 +16,10 @@ export class AlterarPage implements OnInit {
   ano_lancamento:string;
   jogo: Jogo;
   editarForm: FormGroup;
+  imagem : any;
+  event : any;
 
-  constructor(private _formBuilder:FormBuilder,private alertController: AlertController,private _router: Router, private _jogoService : JogoService) {
+  constructor(private _loadingCtrl: LoadingController,private _formBuilder:FormBuilder,private alertController: AlertController,private _router: Router, private _jogoService : JogoFBServiceService) {
   }
 
   ngOnInit() {
@@ -31,8 +34,12 @@ export class AlterarPage implements OnInit {
       preco:[this.jogo.preco],
       avaliacao:[this.jogo.avaliacao,[Validators.required]],
       anoLancamento:[this.jogo.anoLancamento,[Validators.required]]
-    })
+    });
 
+  }
+
+  uploadFile(imagem:any){
+    this.imagem = imagem.files;
   }
 
   submitForm(){
@@ -50,12 +57,30 @@ export class AlterarPage implements OnInit {
   }
 
   edicao(){
-    if(this._jogoService.editar(this.jogo,this.editarForm.value['nome'],this.editarForm.value['produtora'],this.editarForm.value['plataforma'],this.editarForm.value['genero'],this.editarForm.value['preco'],this.editarForm.value['avaliacao'],this.editarForm.value['anoLancamento'])){
-      this.presentAlert("Biblioteca de Jogos","Sucesso","Jogo Alterado");
-      this._router.navigate(["/folder/folder"]);
-    }else{
-      this.presentAlert("Biblioteca de Jogos","Erro","Jogo não Alterado");
-    }
+      this.showLoading("Editando.",1000);
+      if(this.imagem){
+        this._jogoService.editarImagem(this.imagem,this.editarForm.value,this.jogo.id).then(()=>{
+          this._loadingCtrl.dismiss();
+          this.presentAlert("GameBox","Sucesso","Jogo Alterado");
+          this.editarForm.reset();
+          this._router.navigate(["/folder/folder"]);
+        }).catch((error)=>{
+          this._loadingCtrl.dismiss();
+          this.presentAlert("GameBox","Erro","Jogo não Alterado");
+          console.log(error);
+        });
+      }else{
+        this._jogoService.editarJogo(this.editarForm.value,this.jogo.id).then(()=>{
+          this._loadingCtrl.dismiss();
+          this.presentAlert("GameBox","Sucesso","Jogo Alterado");
+          this.editarForm.reset();
+          this._router.navigate(["/folder/folder"]);
+        }).catch((error)=>{
+          this._loadingCtrl.dismiss();
+          this.presentAlert("GameBox","Erro","Jogo não Alterado");
+          console.log(error);
+        });
+      }
   }
 
   async presentAlert(cabecalho : string, subcabecalho : string,msg: string) {
@@ -67,6 +92,15 @@ export class AlterarPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async showLoading(mensagem:string,duracao:number) {
+    const loading = await this._loadingCtrl.create({
+      message: mensagem,
+      duration: duracao,
+    });
+
+    loading.present();
   }
 
   onClick(){

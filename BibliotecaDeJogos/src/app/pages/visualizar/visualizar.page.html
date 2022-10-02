@@ -15,6 +15,9 @@
     <ion-accordion-group *ngFor="let jogo of jogos">
       <ion-accordion value="first">
         <ion-item slot="header" color="light">
+          <ion-avatar>
+            <ion-img src="{{jogo.downloadURL}}"></ion-img>
+          </ion-avatar>
           <ion-label class="nomes">{{jogo.nome}}</ion-label>
         </ion-item>
         <div class="ion-padding" slot="content">

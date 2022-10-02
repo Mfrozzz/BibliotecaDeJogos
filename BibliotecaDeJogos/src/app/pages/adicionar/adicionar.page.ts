@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { JogoService } from 'src/app/services/jogo.service';
+import { JogoFBServiceService } from 'src/app/services/jogo-fbservice.service';
 
 @Component({
   selector: 'app-adicionar',
@@ -13,8 +14,10 @@ export class AdicionarPage implements OnInit {
   formCadastrar: FormGroup;
   is_Submitted: boolean = false;
   ano_lancamento:string;
+  event:any;
+  imagem:any;
 
-  constructor(private _router : Router, private _formBuilder:FormBuilder,private alertController: AlertController,private _jogoService: JogoService) {
+  constructor(private _router : Router,private _loadingCtrl: LoadingController, private _formBuilder:FormBuilder,private alertController: AlertController,private _jogoService: JogoFBServiceService) {
   }
 
   ngOnInit() {
@@ -26,12 +29,17 @@ export class AdicionarPage implements OnInit {
       genero:["",[Validators.required]],
       preco:[""],
       avaliacao:["",[Validators.required]],
-      anoLancamento:["",[Validators.required]]
+      anoLancamento:["",[Validators.required]],
+      imagem: ["",[Validators.required]]
     })
   }
 
   get errorControl(){
     return this.formCadastrar.controls;
+  }
+
+  uploadFile(imagem:any){
+    this.imagem = imagem.files;
   }
 
   submitForm(): boolean{
@@ -44,20 +52,29 @@ export class AdicionarPage implements OnInit {
     }
   }
 
-  private cadastrar() : void{
-      this._jogoService.inserir(this.formCadastrar.value);
-      this.formCadastrar = this._formBuilder.group({
-        nome:[""],
-        produtora:[""],
-        plataforma:[""],
-        genero:[""],
-        preco:[""],
-        avaliacao:[""],
-        anoLancamento:[""]
-      })
-      this.presentAlert("Biblioteca de Jogos","Sucesso","Jogo adicionado em sua Biblioteca");
-      this._router.navigate(["/visualizar"]);
+  async showLoading(mensagem:string,duracao:number) {
+    const loading = await this._loadingCtrl.create({
+      message: mensagem,
+      duration: duracao,
+    });
+
+    loading.present();
   }
+
+  private cadastrar() : void{
+    this.showLoading("Aguarde...",1000);
+      this._jogoService.inserirImg(this.imagem,this.formCadastrar.value).then(()=>{
+        this._loadingCtrl.dismiss();
+        this.presentAlert("GameBox","Sucesso","Jogo adicionado na Biblioteca.");
+        this.formCadastrar.reset();
+        this._router.navigate(["/visualizar"]);
+      }).catch((error)=>{
+        this._loadingCtrl.dismiss();
+        this.presentAlert("GameBox","Falha","Jogo não foi adicionado na Biblioteca.");
+        console.log(error);
+      });
+  }
+
   async presentAlert(cabecalho : string, subcabecalho : string,msg: string) {
     const alert = await this.alertController.create({
       header: cabecalho,
